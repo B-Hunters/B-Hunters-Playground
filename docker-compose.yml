@@ -1,0 +1,88 @@
+version: "3.3"
+services:
+  minio:
+    image: minio/minio
+    entrypoint: sh
+    restart: always
+    command: -c "minio server --address 0.0.0.0:9000 --console-address :8070 /data"
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    ports:
+      - "${MINIO_PORT1}:9000"
+      - "${MINIO_PORT2}:8070"
+    healthcheck:
+      test: timeout 5s bash -c ':> /dev/tcp/127.0.0.1/9000' || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - minio_data:/data
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    env_file:
+      - ./.env
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:${MINIO_PORT1} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY};
+      /usr/bin/mc mb myminio/bhunters;
+      /usr/bin/mc policy set public myminio/bhunters;
+      exit 0;
+      "
+  redis:
+    image: redis/redis-stack-server:6.2.6-v12
+    ports:
+      - "6379:6379"
+    restart: always
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    environment:
+      - REDIS_ARGS=  --repl-diskless-load disabled --repl-diskless-sync yes --repl-diskless-sync-delay 0 --appendonly yes --loglevel debug --requirepass ${REDIS_PASS}
+    volumes:
+      - redis_data:/data
+
+  mongo:
+    image: mongo:latest
+    container_name: my-mongo-container
+    restart: always
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+    volumes:
+      - mongo_data:/data/db
+      - ./config/mongod.conf:/etc/mongod.conf
+      - ./config/mongo-init-scripts/init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    command: mongod --config /etc/mongod.conf --auth 
+
+  karton-system:
+    image: certpl/karton-system:v5.5.0
+    restart: always
+    volumes:
+      - ./config/b-hunters.ini:/etc/karton/karton.ini
+    entrypoint: karton-system
+    command: --setup-bucket
+  karton-dashboard:
+    image: certpl/karton-dashboard:v1.6.0
+    restart: always
+    depends_on:
+      - minio
+    volumes:
+      - ./config/b-hunters.ini:/etc/karton/karton.ini
+    ports:
+      - "6500:5000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/varz"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+volumes:
+  minio_data:
+  redis_data:
+  mongo_data:
