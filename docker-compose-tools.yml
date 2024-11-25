@@ -27,7 +27,7 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-gowitness:
-    image: bormaa/b-hunters-gowitness:v1.
+    image: bormaa/b-hunters-gowitness:v1.0
     restart: always
     deploy:
       replicas: 1
