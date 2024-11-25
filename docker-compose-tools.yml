@@ -3,9 +3,9 @@ services:
   b-hunters-dalfox:
     image: bormaa/b-hunters-dalfox:v1.0
     deploy:
-      replicas: 3
+      replicas: 1
     environment:
-      - workers_num=300
+      - workers_num=100
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-dirsearch:
@@ -14,7 +14,7 @@ services:
       replicas: 1
     environment:
       - deepscan=False
-      - max_threads=400
+      - max_threads=200
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-getjs:
@@ -52,7 +52,8 @@ services:
     deploy:
       replicas: 1
     environment:
-      - scan_type=Full
+      - scan_type=Domain
+      # - scan_type=Full # Use full if you want to scan doamins and paths but this is cpu and memory intensive
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-paramspider:
@@ -73,7 +74,7 @@ services:
       replicas: 1
     environment:
       - process_num=15
-      - process_timeout=600
+      - process_timeout=900
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-ssti-checker:
@@ -118,6 +119,6 @@ services:
   b-hunters-web-technology:
     image: bormaa/b-hunters-web-technology:v1.0
     deploy:
-      replicas: 3
+      replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini

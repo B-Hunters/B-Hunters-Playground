@@ -61,18 +61,19 @@ services:
       - ./config/mongo-init-scripts/init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     command: mongod --config /etc/mongod.conf --auth 
 
-  karton-system:
+  b-hunters-system:
     image: certpl/karton-system:v5.5.0
     restart: always
     volumes:
       - ./config/b-hunters.ini:/etc/karton/karton.ini
     entrypoint: karton-system
     command: --setup-bucket
-  karton-dashboard:
+  b-hunters-dashboard:
     image: certpl/karton-dashboard:v1.6.0
     restart: always
     depends_on:
       - minio
+      - b-hunters-system
     volumes:
       - ./config/b-hunters.ini:/etc/karton/karton.ini
     ports:
@@ -82,6 +83,15 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+  b-hunters-stuck-handler:
+    image: bormaa/b-hunters:latest
+    restart: always
+    volumes:
+      - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
+    depends_on:
+      - b-hunters-system
+    command: status -s
+
 volumes:
   minio_data:
   redis_data:
