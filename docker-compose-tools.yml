@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   b-hunters-dalfox:
-    image: bormaa/b-hunters-dalfox:v1.0
+    image: bormaa/b-hunters-dalfox:latest
     restart: always
     deploy:
       replicas: 1
@@ -10,7 +10,7 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-dirsearch:
-    image: bormaa/b-hunters-dirsearch:v1.0
+    image: bormaa/b-hunters-dirsearch:latest
     restart: always
     deploy:
       replicas: 1
@@ -20,42 +20,42 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-getjs:
-    image: bormaa/b-hunters-getjs:v1.0
+    image: bormaa/b-hunters-getjs:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-gowitness:
-    image: bormaa/b-hunters-gowitness:v1.0
+    image: bormaa/b-hunters-gowitness:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-jsscanner:
-    image: bormaa/b-hunters-jsscanner:v1.0
+    image: bormaa/b-hunters-jsscanner:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-katana:
-    image: bormaa/b-hunters-katana:v1.0
+    image: bormaa/b-hunters-katana:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-nmap:
-    image: bormaa/b-hunters-nmap:v1.0
+    image: bormaa/b-hunters-nmap:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-nuclei:
-    image: bormaa/b-hunters-nuclei:v1.0
+    image: bormaa/b-hunters-nuclei:latest
     restart: always
     deploy:
       replicas: 1
@@ -65,21 +65,21 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-paramspider:
-    image: bormaa/b-hunters-paramspider:v1.0
+    image: bormaa/b-hunters-paramspider:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-gospider:
-    image: bormaa/b-hunters-gospider:v1.0
+    image: bormaa/b-hunters-gospider:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-sqlmap:
-    image: bormaa/b-hunters-sqlmap:v1.0
+    image: bormaa/b-hunters-sqlmap:latest
     restart: always
     deploy:
       replicas: 1
@@ -89,7 +89,7 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-ssti-checker:
-    image: bormaa/b-hunters-ssti-checker:v1.0
+    image: bormaa/b-hunters-ssti-checker:latest
     restart: always
     deploy:
       replicas: 1
@@ -99,7 +99,7 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-subrecon:
-    image: bormaa/b-hunters-subrecon:v1.1
+    image: bormaa/b-hunters-subrecon:latest
     restart: always
     deploy:
       replicas: 1
@@ -124,14 +124,14 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-wayback:
-    image: bormaa/b-hunters-wayback:v1.0
+    image: bormaa/b-hunters-wayback:latest
     restart: always
     deploy:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-web-technology:
-    image: bormaa/b-hunters-web-technology:v1.0
+    image: bormaa/b-hunters-web-technology:latest
     restart: always
     deploy:
       replicas: 1
