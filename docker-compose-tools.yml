@@ -99,7 +99,7 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
   b-hunters-subrecon:
-    image: bormaa/b-hunters-subrecon:v1.0
+    image: bormaa/b-hunters-subrecon:v1.1
     restart: always
     deploy:
       replicas: 1
