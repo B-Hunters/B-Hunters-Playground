@@ -91,8 +91,20 @@ services:
     depends_on:
       - b-hunters-system
     command: status -s
+  b-hunters-xray-server:
+    image: bormaa/xray:latest
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ./config/xrayserver/:/xray/
+      - xray_data:/xraydata/
+    depends_on:
+      - b-hunters-system
+    command: ./xray reverse
 
 volumes:
   minio_data:
   redis_data:
   mongo_data:
+  xray_data:

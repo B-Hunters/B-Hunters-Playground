@@ -1,0 +1,4 @@
+FROM ubuntu:latest
+RUN apt update
+RUN apt install libpcap0.8-dev libuv1-dev -y && apt clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /xray/
