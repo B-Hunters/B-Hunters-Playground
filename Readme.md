@@ -12,8 +12,8 @@ To be able to use all the tools remember to update the environment variables wit
 **You have to update `b-hunters.ini` with you server IP if you want to use it on multiple servers or use 127.0.0.1 for localhost and update passwords as you want.**   
 **Update `.env` file with same passwords if you have changed them**
 
-### If you want to use **`XrayScanner`** you have to update **`http_base_url`** with your IP in **`config.yaml`**  in config/xrayserver folder
-
+### If you want to use **`XrayScanner`** you have to update **`http_base_url`** in `config.yaml` file with your IP in **`config.yaml`**  in `config/xrayserver` and `config/xrayclient` folder
+### You can edit **`XrayScanner`** settings at `config/xrayclient/config.yaml`
 ### **Remember You have to install b-hunters package and use same `b-hunters.ini` configuration to be able to interact with the system**
 ## How to run 
 
