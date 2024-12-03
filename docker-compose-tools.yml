@@ -137,3 +137,11 @@ services:
       replicas: 1
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
+  b-hunters-xray:
+    image: bormaa/b-hunters-xray:latest
+    restart: always
+    deploy:
+      replicas: 1
+    volumes:
+      - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
+      - ./config/xrayclient/config.yaml:/config.yaml
