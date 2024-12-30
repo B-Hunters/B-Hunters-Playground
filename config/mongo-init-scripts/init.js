@@ -8,3 +8,4 @@ db.createCollection("domains");
 db.createCollection("scans");
 db.createCollection("js");
 db.createCollection("links");
+db.createCollection("reports");
