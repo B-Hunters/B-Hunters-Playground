@@ -1,3 +1,4 @@
+![B-Hunters Logo](images/logo/bhunters_logo@0.5x.png)
 # B-Hunters-playground
 
 **This is the playground for [B-Hunters Framework](https://github.com/B-Hunters/B-Hunters)**
