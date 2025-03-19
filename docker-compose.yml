@@ -28,8 +28,8 @@ services:
     entrypoint: >
       /bin/sh -c "
       /usr/bin/mc alias set myminio http://minio:${MINIO_PORT1} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY};
-      /usr/bin/mc mb myminio/bhunters;
-      /usr/bin/mc policy set public myminio/bhunters;
+      /usr/bin/mc mb myminio/recon;
+      /usr/bin/mc policy set public myminio/recon;
       exit 0;
       "
   redis:

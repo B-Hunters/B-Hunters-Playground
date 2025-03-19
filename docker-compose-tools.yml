@@ -145,3 +145,10 @@ services:
     volumes:
       - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
       - ./config/xrayclient/config.yaml:/config.yaml
+  b-hunters-wapiti:
+    image: bormaa/b-hunters-wapiti:latest
+    restart: always
+    deploy:
+      replicas: 1
+    volumes:
+      - ./config/b-hunters.ini:/etc/b-hunters/b-hunters.ini
